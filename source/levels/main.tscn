@@ -16,7 +16,6 @@ margin/bottom = 40.0
 
 [node name="playerOne" parent="." instance=ExtResource( 1 )]
 
-editor/display_folded = true
 transform/pos = Vector2( 450.949, 459.3 )
 
 [node name="healthBar" parent="playerOne"]
@@ -36,7 +35,6 @@ margin/bottom = -398.0
 
 [node name="playerTwo" parent="." instance=ExtResource( 1 )]
 
-editor/display_folded = true
 transform/pos = Vector2( 773.295, 457.63 )
 
 [node name="healthBar" parent="playerTwo"]
