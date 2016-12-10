@@ -4,10 +4,12 @@ var hits = 0
 
 onready var parent = get_parent()
 onready var turnController = parent.get_node("actionsComponent").turnController
+onready var inputSolver = parent.get_node("inputResolver")
 func MakeCombo():
+	parent.bonusCombo = 20
 	randomize()
 	hits = int(rand_range(2,6))
 	for i in range (0,hits):
 		parent.actionQueue.append(parent.actionType[randi(0,2)%2])
 		print(parent.actionQueue)
-	turnController.ResolveTurn()
+	inputSolver.GenerateComboInputs()

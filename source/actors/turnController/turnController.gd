@@ -27,6 +27,7 @@ func ResolveTurn():
 			lastPlayed.actions.ExecuteKick()
 		elif lastPlayed.actionQueue[0] == "defend":
 			lastPlayed.actions.ExecuteDefense()
+	lastPlayed.bonusCombo = 0
 func SetCurrentPlayer():
 		if turn == "playerOne":
 			currentPlaying = get_node("../playerOne")

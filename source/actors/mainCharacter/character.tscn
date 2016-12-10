@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://actors/mainCharacter/characterBehaviour.gd" type="Script" id=2]
 [ext_resource path="res://screens/mainSceneUI/actionsInterface.tscn" type="PackedScene" id=3]
 [ext_resource path="res://actors/mainCharacter/actionsComponent/actionsComponent.tscn" type="PackedScene" id=4]
 [ext_resource path="res://actors/mainCharacter/comboComponent/comboComponent.tscn" type="PackedScene" id=5]
+[ext_resource path="res://actors/inputResolver/inputResolver.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Animation" id=1]
 
@@ -64,6 +65,8 @@ blend_times = [  ]
 autoplay = ""
 
 [node name="comboComponent" parent="." instance=ExtResource( 5 )]
+
+[node name="inputResolver" parent="." instance=ExtResource( 6 )]
 
 [connection signal="released" from="actionsInterface/punchButton" to="." method="_on_punchButton_released"]
 

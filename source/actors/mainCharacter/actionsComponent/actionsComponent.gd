@@ -7,7 +7,7 @@ func GenerateActionThereshold():
 	var thereshold = randi(0,100)%100
 	return thereshold
 func ExecutePunch():
-	var result = GenerateActionThereshold() - turnController.currentPlaying.defense
+	var result = GenerateActionThereshold() - turnController.currentPlaying.defense + get_parent().bonusCombo
 	if  result > 15:
 		turnController.currentPlaying.DamageCharacter(15)
 		get_parent().get_node("animator").play("testAnim")
@@ -18,7 +18,7 @@ func ExecutePunch():
 		print("exposed")
 	print(result)
 func ExecuteKick():
-	var result = GenerateActionThereshold() - turnController.currentPlaying.defense
+	var result = GenerateActionThereshold() - turnController.currentPlaying.defense + get_parent().bonusCombo
 	if result > 30:
 		var damage = int(rand_range(10,21))
 		turnController.currentPlaying.DamageCharacter(damage)
@@ -28,6 +28,7 @@ func ExecuteKick():
 		turnController.lastPlayed.SetCurrentStance("exposed")
 		get_parent().actionQueue.clear()
 		print("exposed")
+	print(result)
 func ExecuteDefense():
 	print("you're a coward")
 	turnController.lastPlayed.SetCurrentStance("defense")

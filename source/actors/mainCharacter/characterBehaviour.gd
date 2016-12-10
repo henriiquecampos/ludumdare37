@@ -8,6 +8,7 @@ var health = 100
 var actionQueue = []
 var avaiableActions = 3 setget SetAvaiableActions
 var defense
+var bonusCombo = 0
 
 func _ready():
 	SetCurrentStance("normal")
@@ -20,7 +21,7 @@ func SetAvaiableActions(value):
 		avaiableActions += value
 	else:
 		avaiableActions = 0
-		get_node("../turnController").ToggleTurn()
+		#get_node("../turnController").ToggleTurn()
 		
 func SetCurrentStance(value):
 	currentStance = value
@@ -35,10 +36,11 @@ func GetCurrentStance():
 	return
 	
 func DamageCharacter(value):
-	if health >= health - value:
-		health -= value
+	health -= value
+	if health > 0:
+		print("health: " + str(health))
 		get_node("healthBar").set_value(health)
-	else:
+	elif health <= 0:
 		print("Game Over")
 
 func _on_punchButton_released():
@@ -54,5 +56,4 @@ func _on_comboButton_released():
 	if avaiableActions <3:
 		print("you can't make a combo")
 	else:
-		SetAvaiableActions(0)
 		get_node("comboComponent").MakeCombo()
