@@ -2,36 +2,44 @@ extends Node
 signal finishedAction
 onready var turnController = get_tree().get_root().get_child(0).find_node("turnController")
 
-func GenerateActionThereshold():
+var result = 0
+func GenerateActionResult():
 	randomize()
-	var thereshold = randi(0,100)%100
-	return thereshold
+	var thereshold = randi(0,101)%101
+	result = thereshold - turnController.currentPlaying.defense
+	print(result)
 func ExecutePunch():
-	var result = GenerateActionThereshold() - turnController.currentPlaying.defense + get_parent().bonusCombo
-	if  result > 15:
-		turnController.currentPlaying.DamageCharacter(15)
-		get_parent().get_node("animator").play("testAnim")
+	GenerateActionResult()
+	print("O resultado do acerto foi: " + str(result))
+	if  result < 60:
+		#turnController.currentPlaying.DamageCharacter(15)
+		get_parent().get_node("animator").play("punch")
 		get_parent().actionQueue.pop_front()
 	else:
-		turnController.lastPlayed.SetCurrentStance("exposed")
 		get_parent().actionQueue.clear()
+		turnController.lastPlayed.SetCurrentStance("exposed")
+		get_parent().get_node("animator").play("exposed")
 		print("exposed")
-	print(result)
+		print(get_parent().actionQueue)
+	result = 0
 func ExecuteKick():
-	var result = GenerateActionThereshold() - turnController.currentPlaying.defense + get_parent().bonusCombo
-	if result > 30:
+	GenerateActionResult()
+	if result < 60:
 		var damage = int(rand_range(10,21))
-		turnController.currentPlaying.DamageCharacter(damage)
-		get_parent().get_node("animator").play("testAnim")
+		#turnController.currentPlaying.DamageCharacter(damage)
+		get_parent().get_node("animator").play("kick")
 		get_parent().actionQueue.pop_front()
 	else:
-		turnController.lastPlayed.SetCurrentStance("exposed")
 		get_parent().actionQueue.clear()
+		turnController.lastPlayed.SetCurrentStance("exposed")
+		get_parent().get_node("animator").play("exposed")
 		print("exposed")
-	print(result)
+		print(get_parent().actionQueue)
+	result = 0
 func ExecuteDefense():
 	print("you're a coward")
 	turnController.lastPlayed.SetCurrentStance("defense")
+	get_parent().get_node("animator").play("defend")
 	get_parent().actionQueue.clear()
 func ExecuteCombo():
 	pass

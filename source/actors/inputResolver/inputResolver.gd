@@ -1,4 +1,4 @@
-extends Label
+extends Node
 
 onready var queue = get_parent().actionQueue
 onready var turnController = get_parent().get_node("actionsComponent").turnController

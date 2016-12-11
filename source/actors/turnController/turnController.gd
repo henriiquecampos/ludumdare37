@@ -35,7 +35,7 @@ func SetCurrentPlayer():
 		elif turn == "playerTwo":
 			currentPlaying = get_node("../playerTwo")
 			lastPlayed = get_node("../playerOne")
-		lastPlayed.get_node("actionsInterface").set_hidden(true)
-		currentPlaying.get_node("actionsInterface").set_hidden(false)
+		lastPlayed.actionsInterface.set_hidden(true)
+		currentPlaying.actionsInterface.set_hidden(false)
 		lastPlayed.ResetActions()
-		currentPlaying.get_node("actionsInterface").set_hidden(false)
+		currentPlaying.actionsInterface.set_hidden(false)

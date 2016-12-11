@@ -10,6 +10,11 @@ var avaiableActions = 3 setget SetAvaiableActions
 var defense
 var bonusCombo = 0
 
+export (NodePath) var actionsInterfacePath
+onready var actionsInterface = get_node(actionsInterfacePath)
+export (NodePath) var healthBarPath
+onready var healthBar = get_node(healthBarPath)
+
 func _ready():
 	SetCurrentStance("normal")
 func ResetActions():
@@ -21,16 +26,15 @@ func SetAvaiableActions(value):
 		avaiableActions += value
 	else:
 		avaiableActions = 0
-		#get_node("../turnController").ToggleTurn()
 		
 func SetCurrentStance(value):
 	currentStance = value
 	if value == "normal":
-		defense = 30
-	elif value == "defense":
-		defense = 50
-	elif value == "exposed":
 		defense = 0
+	elif value == "defense":
+		defense = -20
+	elif value == "exposed":
+		defense = 20
 	
 func GetCurrentStance():
 	return
@@ -39,8 +43,9 @@ func DamageCharacter(value):
 	health -= value
 	if health > 0:
 		print("health: " + str(health))
-		get_node("healthBar").set_value(health)
+		healthBar.set_value(health)
 	elif health <= 0:
+		healthBar.set_value(health)
 		print("Game Over")
 
 func _on_punchButton_released():
