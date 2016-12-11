@@ -9,7 +9,6 @@ func _ready():
 func SetTurn(value):
 	turn = value
 	if value != null:
-		set_text(value)
 		SetCurrentPlayer()
 
 func ToggleTurn():

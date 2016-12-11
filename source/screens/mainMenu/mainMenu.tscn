@@ -1,0 +1,145 @@
+[gd_scene load_steps=7 format=1]
+
+[ext_resource path="res://screens/logo.png" type="Texture" id=1]
+[ext_resource path="res://screens/buttonLarge.png" type="Texture" id=2]
+[ext_resource path="res://screens/buttonLargeClick.png" type="Texture" id=3]
+[ext_resource path="res://screens/buttonLargeHover.png" type="Texture" id=4]
+[ext_resource path="res://fonts/menuFont.tres" type="DynamicFont" id=5]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends TextureFrame\n\n\n\nfunc _on_quit_released():\n\tget_tree().quit()\n\n\nfunc _on_credits_released():\n\tpass # replace with function body\n\n\nfunc _on_start_released():\n\tget_tree().change_scene(\"res://levels/main.tscn\")\n"
+
+[node name="mainMenu" type="TextureFrame"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 241.0
+margin/top = 0.0
+margin/right = 962.0
+margin/bottom = 471.0
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 0
+script/script = SubResource( 1 )
+
+[node name="start" type="TextureButton" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 266.0
+margin/top = 484.0
+margin/right = 455.0
+margin/bottom = 547.0
+toggle_mode = false
+click_on_press = true
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 2 )
+textures/pressed = ExtResource( 3 )
+textures/hover = ExtResource( 4 )
+params/scale = Vector2( 3, 3 )
+
+[node name="Label" type="Label" parent="start"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 189.0
+margin/bottom = 62.0
+custom_fonts/font = ExtResource( 5 )
+text = "Start"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="credits" type="TextureButton" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 266.0
+margin/top = 551.0
+margin/right = 455.0
+margin/bottom = 614.0
+toggle_mode = false
+click_on_press = true
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 2 )
+textures/pressed = ExtResource( 3 )
+textures/hover = ExtResource( 4 )
+params/scale = Vector2( 3, 3 )
+
+[node name="Label" type="Label" parent="credits"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 183.0
+margin/bottom = 59.0
+custom_fonts/font = ExtResource( 5 )
+text = "Credits"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="quit" type="TextureButton" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 266.0
+margin/top = 621.0
+margin/right = 455.0
+margin/bottom = 684.0
+toggle_mode = false
+click_on_press = true
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 2 )
+textures/pressed = ExtResource( 3 )
+textures/hover = ExtResource( 4 )
+params/scale = Vector2( 3, 3 )
+
+[node name="Label" type="Label" parent="quit"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 183.0
+margin/bottom = 59.0
+custom_fonts/font = ExtResource( 5 )
+text = "Quit"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[connection signal="released" from="start" to="." method="_on_start_released"]
+
+[connection signal="released" from="credits" to="." method="_on_credits_released"]
+
+[connection signal="released" from="quit" to="." method="_on_quit_released"]
+
+

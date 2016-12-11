@@ -24,6 +24,7 @@ func SetAvaiableActions(value):
 		get_node("../turnController").ToggleTurn()
 	elif value != 0:
 		avaiableActions += value
+		#actionsInterface.get_node("avaiableActions").set_text("avaiable actions: " + str(avaiableActions))
 	else:
 		avaiableActions = 0
 		
