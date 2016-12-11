@@ -44,6 +44,7 @@ func DamageCharacter(value):
 	if health > 0:
 		print("health: " + str(health))
 		healthBar.set_value(health)
+		get_node("animator").play("getHit")
 	elif health <= 0:
 		healthBar.set_value(health)
 		print("Game Over")
