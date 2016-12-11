@@ -8,9 +8,9 @@
 
 [sub_resource type="GDScript" id=1]
 
-script/source = "extends TextureFrame\n\n\n\nfunc _on_quit_released():\n\tget_tree().quit()\n\n\nfunc _on_credits_released():\n\tpass # replace with function body\n\n\nfunc _on_start_released():\n\tget_tree().change_scene(\"res://levels/main.tscn\")\n"
+script/source = "extends Control\n\nfunc _ready():\n\tpass\n\nfunc _on_quit_released():\n\tget_tree().quit()\n\n\nfunc _on_credits_released():\n\tpass # replace with function body\n\n\nfunc _on_start_released():\n\tget_tree().change_scene(\"res://levels/main.tscn\")\n"
 
-[node name="mainMenu" type="TextureFrame"]
+[node name="mainMenu" type="Control"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -20,10 +20,32 @@ margin/left = 241.0
 margin/top = 0.0
 margin/right = 962.0
 margin/bottom = 471.0
-texture = ExtResource( 1 )
-expand = true
-stretch_mode = 0
 script/script = SubResource( 1 )
+
+[node name="ColorFrame" type="ColorFrame" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -311.0
+margin/top = -80.0
+margin/right = 1179.0
+margin/bottom = 820.0
+color = Color( 0.0796509, 0.111079, 0.234375, 1 )
+
+[node name="tittle" type="TextureFrame" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 39.0
+margin/top = 70.0
+margin/right = 679.0
+margin/bottom = 460.0
+texture = ExtResource( 1 )
+stretch_mode = 5
 
 [node name="start" type="TextureButton" parent="."]
 

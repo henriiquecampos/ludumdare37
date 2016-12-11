@@ -48,7 +48,7 @@ func DamageCharacter(value):
 		get_node("animator").play("getHit")
 	elif health <= 0:
 		healthBar.set_value(health)
-		print("Game Over")
+		get_node("animator").play("callGameOver")
 
 func _on_punchButton_released():
 	SetAvaiableActions(-1)

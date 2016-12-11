@@ -1,13 +1,21 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://actors/inputResolver/empty.png" type="Texture" id=1]
 [ext_resource path="res://actors/inputResolver/emptyClick.png" type="Texture" id=2]
 [ext_resource path="res://actors/inputResolver/emptyHolver.png" type="Texture" id=3]
 [ext_resource path="res://actors/mainCharacter/Players_spritesheet_20x33px.png" type="Texture" id=4]
+[ext_resource path="res://fonts/Minecraft.ttf" type="DynamicFontData" id=5]
 
 [sub_resource type="GDScript" id=1]
 
 script/source = "extends Control\n\nonready var actionQue = get_node(\"avaiableActions\")\nfunc _ready():\n\t# Called every time the node is added to the scene.\n\t# Initialization here\n\tpass\n\n\nfunc _on_punchButton_released():\n\tget_node(\"comboButton\").set_hidden(true)\n\tvar action = get_node(\"punchButton\").duplicate()\n\tactionQue.add_child(action)\n\n\nfunc _on_kickButton_released():\n\tvar action = get_node(\"kickButton\").duplicate()\n\tactionQue.add_child(action)\n\nfunc _on_defenseButton_released():\n\tget_node(\"comboButton\").set_hidden(true)\n\tvar action = get_node(\"defenseButton\").duplicate()\n\tactionQue.add_child(action)\n\nfunc _on_actionsInterface_visibility_changed():\n\tfor child in actionQue.get_children():\n\t\tchild.queue_free()\n\tget_node(\"comboButton\").set_hidden(false)\n"
+
+[sub_resource type="DynamicFont" id=2]
+
+font/size = 60
+font/use_mipmaps = false
+font/use_filter = false
+font/font = ExtResource( 5 )
 
 [node name="actionsInterface" type="Control"]
 
@@ -121,13 +129,23 @@ textures/pressed = ExtResource( 2 )
 textures/hover = ExtResource( 3 )
 params/scale = Vector2( 4, 4 )
 
-[node name="Sprite4" type="Sprite" parent="comboButton"]
+[node name="Sprite4" type="Label" parent="comboButton"]
 
-transform/pos = Vector2( 40.6815, 38.8917 )
-transform/scale = Vector2( 2.5, 2.5 )
-texture = ExtResource( 4 )
-region = true
-region_rect = Rect2( 60.375, 7.125, 19.625, 25.75 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 84.0
+margin/bottom = 87.0
+custom_fonts/font = SubResource( 2 )
+text = "\?"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 [node name="avaiableActions" type="HBoxContainer" parent="."]
 
