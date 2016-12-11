@@ -6,13 +6,12 @@ var result = 0
 func GenerateActionResult():
 	randomize()
 	var thereshold = randi(0,101)%101
-	result = thereshold - turnController.currentPlaying.defense
+	result = thereshold - turnController.currentPlaying.defense - turnController.lastPlayed.comboBonus
 	print(result)
 func ExecutePunch():
 	GenerateActionResult()
 	print("O resultado do acerto foi: " + str(result))
 	if  result < 60:
-		#turnController.currentPlaying.DamageCharacter(15)
 		get_parent().get_node("animator").play("punch")
 		get_parent().actionQueue.pop_front()
 	else:
@@ -20,13 +19,11 @@ func ExecutePunch():
 		turnController.lastPlayed.SetCurrentStance("exposed")
 		get_parent().get_node("animator").play("exposed")
 		print("exposed")
-		print(get_parent().actionQueue)
 	result = 0
 func ExecuteKick():
 	GenerateActionResult()
 	if result < 60:
 		var damage = int(rand_range(10,21))
-		#turnController.currentPlaying.DamageCharacter(damage)
 		get_parent().get_node("animator").play("kick")
 		get_parent().actionQueue.pop_front()
 	else:
@@ -34,7 +31,6 @@ func ExecuteKick():
 		turnController.lastPlayed.SetCurrentStance("exposed")
 		get_parent().get_node("animator").play("exposed")
 		print("exposed")
-		print(get_parent().actionQueue)
 	result = 0
 func ExecuteDefense():
 	print("you're a coward")

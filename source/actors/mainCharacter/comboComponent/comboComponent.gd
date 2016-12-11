@@ -6,7 +6,8 @@ onready var parent = get_parent()
 onready var turnController = parent.get_node("actionsComponent").turnController
 onready var inputSolver = parent.get_node("inputResolver")
 func MakeCombo():
-	parent.bonusCombo = 20
+	parent.actionsInterface.set_hidden(true)
+	parent.comboBonus = 20
 	randomize()
 	hits = int(rand_range(2,6))
 	for i in range (0,hits):

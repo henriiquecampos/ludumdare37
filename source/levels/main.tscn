@@ -1,36 +1,140 @@
-[gd_scene load_steps=22 format=1]
+[gd_scene load_steps=30 format=1]
 
 [ext_resource path="res://levels/fundo.png" type="Texture" id=1]
 [ext_resource path="res://actors/mainCharacter/Players_spritesheet_20x33px.png" type="Texture" id=2]
 [ext_resource path="res://actors/mainCharacter/characterBehaviour.gd" type="Script" id=3]
 [ext_resource path="res://actors/mainCharacter/actionsComponent/actionsComponent.tscn" type="PackedScene" id=4]
-[ext_resource path="res://actors/mainCharacter/comboComponent/comboComponent.tscn" type="PackedScene" id=5]
-[ext_resource path="res://actors/inputResolver/inputResolver.tscn" type="PackedScene" id=6]
-[ext_resource path="res://fonts/theme.tres" type="Theme" id=7]
-[ext_resource path="res://screens/mainSceneUI/actionsInterface.tscn" type="PackedScene" id=8]
-[ext_resource path="res://actors/turnController/turnController.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Crowd spritesheet20x33.png" type="Texture" id=10]
+[ext_resource path="res://actors/mainCharacter/baseanim.png" type="Texture" id=5]
+[ext_resource path="res://actors/mainCharacter/comboComponent/comboComponent.tscn" type="PackedScene" id=6]
+[ext_resource path="res://actors/inputResolver/inputResolver.tscn" type="PackedScene" id=7]
+[ext_resource path="res://fonts/theme.tres" type="Theme" id=8]
+[ext_resource path="res://screens/mainSceneUI/actionsInterface.tscn" type="PackedScene" id=9]
+[ext_resource path="res://fonts/themeCombo.tres" type="Theme" id=10]
+[ext_resource path="res://actors/turnController/turnController.tscn" type="PackedScene" id=11]
+[ext_resource path="res://areas/crowd/crowd.tscn" type="PackedScene" id=12]
+[ext_resource path="res://lights/light.png" type="Texture" id=13]
+[ext_resource path="res://levels/fight_theme.ogg" type="AudioStream" id=14]
 
 [sub_resource type="Animation" id=1]
 
 resource/name = "defend"
 length = 1.0
-loop = false
+loop = true
 step = 0.1
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:region_rect")
+tracks/0/path = NodePath(".:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0, 0.1 ), "transitions":FloatArray( 1, 1 ), "update":1, "values":[ Rect2( 0, 6.5, 15, 26.5 ), Rect2( 41, 6.5, 13, 26.5 ) ] }
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 5 ) ] }
 tracks/1/type = "value"
-tracks/1/path = NodePath(".:transform/pos")
+tracks/1/path = NodePath(".:frame")
 tracks/1/interp = 1
 tracks/1/imported = false
-tracks/1/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":0, "values":[ Vector2( 540, 460 ) ] }
+tracks/1/keys = { "times":FloatArray( 0, 0.2, 0.5, 0.8 ), "transitions":FloatArray( 1, 1, 1, 1 ), "update":1, "values":[ 8, 9, 10, 11 ] }
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:region")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ false ] }
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:hframes")
+tracks/3/interp = 1
+tracks/3/imported = false
+tracks/3/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ 4 ] }
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:vframes")
+tracks/4/interp = 1
+tracks/4/imported = false
+tracks/4/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ 3 ] }
 
 [sub_resource type="Animation" id=2]
 
 resource/name = "exposed"
+length = 1.0
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 5 ) ] }
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = { "times":FloatArray( 0, 0.3, 0.5, 0.8 ), "transitions":FloatArray( 1, 1, 1, 1 ), "update":1, "values":[ 4, 5, 6, 7 ] }
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:region")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ false ] }
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:hframes")
+tracks/3/interp = 1
+tracks/3/imported = false
+tracks/3/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ 4 ] }
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:vframes")
+tracks/4/interp = 1
+tracks/4/imported = false
+tracks/4/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ 3 ] }
+
+[sub_resource type="Animation" id=3]
+
+resource/name = "getHit"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 2 ) ] }
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:hframes")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ 6 ] }
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:vframes")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ 2 ] }
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:frame")
+tracks/3/interp = 1
+tracks/3/imported = false
+tracks/3/keys = { "times":FloatArray( 0.5 ), "transitions":FloatArray( 1 ), "update":1, "values":[ 5 ] }
+
+[sub_resource type="Animation" id=14]
+
+resource/name = "idle"
+length = 1.0
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 5 ) ] }
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = { "times":FloatArray( 0, 0.3, 0.6, 0.8 ), "transitions":FloatArray( 1, 1, 1, 1 ), "update":1, "values":[ 0, 1, 2, 3 ] }
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:hframes")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ 4 ] }
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:vframes")
+tracks/3/interp = 1
+tracks/3/imported = false
+tracks/3/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ 3 ] }
+
+[sub_resource type="Animation" id=4]
+
 length = 1.0
 loop = false
 step = 0.1
@@ -38,87 +142,81 @@ tracks/0/type = "value"
 tracks/0/path = NodePath(".:transform/pos")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":0, "values":[ Vector2( 540, 460 ) ] }
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:region_rect")
+tracks/0/keys = { "times":FloatArray( 0, 0.3, 0.6, 0.9 ), "transitions":FloatArray( 1, 1, 1, 1 ), "update":0, "values":[ Vector2( 540, 460 ), Vector2( 660, 460 ), Vector2( 660, 460 ), Vector2( 540, 460 ) ] }
+tracks/1/type = "method"
+tracks/1/path = NodePath("../turnController")
 tracks/1/interp = 1
 tracks/1/imported = false
-tracks/1/keys = { "times":FloatArray( 0, 0.1 ), "transitions":FloatArray( 1, 1 ), "update":1, "values":[ Rect2( 0, 6.5, 15, 26.5 ), Rect2( 20, 6.5, 11, 26.5 ) ] }
-
-[sub_resource type="Animation" id=10]
-
-resource/name = "getHit"
-length = 1.0
-loop = false
-step = 0.1
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:region_rect")
-tracks/0/interp = 1
-tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0, 0.3 ), "transitions":FloatArray( 1, 1 ), "update":1, "values":[ Rect2( 100, 4, 13, 29 ), Rect2( 0, 6.5, 15, 26.5 ) ] }
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:transform/pos")
-tracks/1/interp = 1
-tracks/1/imported = false
-tracks/1/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":0, "values":[ Vector2( 540, 460 ) ] }
-
-[sub_resource type="Animation" id=3]
-
-resource/name = "kick"
-length = 1.0
-loop = false
-step = 0.1
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:region_rect")
-tracks/0/interp = 1
-tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0, 0.4, 0.6 ), "transitions":FloatArray( 1, 1, 1 ), "update":1, "values":[ Rect2( 0, 6.5, 15, 26.5 ), Rect2( 81, 6.5, 19, 26.5 ), Rect2( 0, 6.5, 15, 26.5 ) ] }
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:transform/pos")
-tracks/1/interp = 1
-tracks/1/imported = false
-tracks/1/keys = { "times":FloatArray( 0, 0.3, 0.6, 0.9 ), "transitions":FloatArray( 1, 1, 1, 1 ), "update":0, "values":[ Vector2( 540, 460 ), Vector2( 660, 460 ), Vector2( 660, 460 ), Vector2( 540, 460 ) ] }
+tracks/1/keys = { "times":FloatArray( 1 ), "transitions":FloatArray( 1 ), "values":[ { "args":[  ], "method":"ResolveTurn" } ] }
 tracks/2/type = "method"
-tracks/2/path = NodePath("../turnController")
+tracks/2/path = NodePath("../playerTwo")
 tracks/2/interp = 1
 tracks/2/imported = false
-tracks/2/keys = { "times":FloatArray( 1 ), "transitions":FloatArray( 1 ), "values":[ { "args":[  ], "method":"ResolveTurn" } ] }
-tracks/3/type = "method"
-tracks/3/path = NodePath("../playerTwo")
+tracks/2/keys = { "times":FloatArray( 0.5 ), "transitions":FloatArray( 1 ), "values":[ { "args":[ 20 ], "method":"DamageCharacter" } ] }
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:texture")
 tracks/3/interp = 1
 tracks/3/imported = false
-tracks/3/keys = { "times":FloatArray( 0.5 ), "transitions":FloatArray( 1 ), "values":[ { "args":[ 20 ], "method":"DamageCharacter" } ] }
-
-[sub_resource type="Animation" id=4]
-
-resource/name = "punch"
-length = 1.0
-loop = false
-step = 0.1
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:region_rect")
-tracks/0/interp = 1
-tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0, 0.4, 0.6 ), "transitions":FloatArray( 1, 1, 1 ), "update":1, "values":[ Rect2( 0, 6.5, 15, 26.5 ), Rect2( 61, 6.5, 19, 26.5 ), Rect2( 0, 6.5, 15, 26.5 ) ] }
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:transform/pos")
-tracks/1/interp = 1
-tracks/1/imported = false
-tracks/1/keys = { "times":FloatArray( 0, 0.3, 0.5, 0.8 ), "transitions":FloatArray( 1, 1, 1, 1 ), "update":0, "values":[ Vector2( 540, 460 ), Vector2( 650, 460 ), Vector2( 650, 460 ), Vector2( 540, 460 ) ] }
-tracks/2/type = "method"
-tracks/2/path = NodePath("../turnController")
-tracks/2/interp = 1
-tracks/2/imported = false
-tracks/2/keys = { "times":FloatArray( 1 ), "transitions":FloatArray( 1 ), "values":[ { "args":[  ], "method":"ResolveTurn" } ] }
-tracks/3/type = "method"
-tracks/3/path = NodePath("../playerTwo")
-tracks/3/interp = 1
-tracks/3/imported = false
-tracks/3/keys = { "times":FloatArray( 0.4 ), "transitions":FloatArray( 1 ), "values":[ { "args":[ 12 ], "method":"DamageCharacter" } ] }
+tracks/3/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 2 ) ] }
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:frame")
+tracks/4/interp = 1
+tracks/4/imported = false
+tracks/4/keys = { "times":FloatArray( 0, 0.3, 0.6 ), "transitions":FloatArray( 1, 1, 1 ), "update":1, "values":[ 0, 4, 0 ] }
+tracks/5/type = "value"
+tracks/5/path = NodePath(".:hframes")
+tracks/5/interp = 1
+tracks/5/imported = false
+tracks/5/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ 6 ] }
+tracks/6/type = "value"
+tracks/6/path = NodePath(".:vframes")
+tracks/6/interp = 1
+tracks/6/imported = false
+tracks/6/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ 2 ] }
 
 [sub_resource type="Animation" id=5]
 
-resource/name = "testAnim"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:transform/pos")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 0.3, 0.5, 0.8 ), "transitions":FloatArray( 1, 1, 1, 1 ), "update":0, "values":[ Vector2( 540, 460 ), Vector2( 650, 460 ), Vector2( 650, 460 ), Vector2( 540, 460 ) ] }
+tracks/1/type = "method"
+tracks/1/path = NodePath("../turnController")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = { "times":FloatArray( 1 ), "transitions":FloatArray( 1 ), "values":[ { "args":[  ], "method":"ResolveTurn" } ] }
+tracks/2/type = "method"
+tracks/2/path = NodePath("../playerTwo")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = { "times":FloatArray( 0.4 ), "transitions":FloatArray( 1 ), "values":[ { "args":[ 12 ], "method":"DamageCharacter" } ] }
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:texture")
+tracks/3/interp = 1
+tracks/3/imported = false
+tracks/3/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 2 ) ] }
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:frame")
+tracks/4/interp = 1
+tracks/4/imported = false
+tracks/4/keys = { "times":FloatArray( 0, 0.3, 0.5 ), "transitions":FloatArray( 1, 1, 1 ), "update":1, "values":[ 0, 3, 0 ] }
+tracks/5/type = "value"
+tracks/5/path = NodePath(".:hframes")
+tracks/5/interp = 1
+tracks/5/imported = false
+tracks/5/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ 6 ] }
+tracks/6/type = "value"
+tracks/6/path = NodePath(".:vframes")
+tracks/6/interp = 1
+tracks/6/imported = false
+tracks/6/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ 2 ] }
+
+[sub_resource type="Animation" id=6]
+
 length = 2.0
 loop = false
 step = 0.1
@@ -133,9 +231,8 @@ tracks/1/interp = 1
 tracks/1/imported = false
 tracks/1/keys = { "times":FloatArray( 2 ), "transitions":FloatArray( 1 ), "values":[ { "args":[  ], "method":"ResolveTurn" } ] }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=7]
 
-resource/name = "defend"
 length = 1.0
 loop = false
 step = 0.1
@@ -150,9 +247,8 @@ tracks/1/interp = 1
 tracks/1/imported = false
 tracks/1/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":0, "values":[ Vector2( 770, 460 ) ] }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=8]
 
-resource/name = "exposed"
 length = 1.0
 loop = false
 step = 0.1
@@ -167,7 +263,7 @@ tracks/1/interp = 1
 tracks/1/imported = false
 tracks/1/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":0, "values":[ Vector2( 770, 460 ) ] }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=9]
 
 resource/name = "getHit"
 length = 1.0
@@ -184,9 +280,15 @@ tracks/1/interp = 1
 tracks/1/imported = false
 tracks/1/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":0, "values":[ Vector2( 770, 460 ) ] }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=15]
 
-resource/name = "kick"
+resource/name = "idle"
+length = 1.0
+loop = true
+step = 0.1
+
+[sub_resource type="Animation" id=10]
+
 length = 1.0
 loop = false
 step = 0.1
@@ -211,9 +313,8 @@ tracks/3/interp = 1
 tracks/3/imported = false
 tracks/3/keys = { "times":FloatArray( 0.5 ), "transitions":FloatArray( 1 ), "values":[ { "args":[ 20 ], "method":"DamageCharacter" } ] }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=11]
 
-resource/name = "punch"
 length = 1.0
 loop = false
 step = 0.1
@@ -238,6 +339,14 @@ tracks/3/interp = 1
 tracks/3/imported = false
 tracks/3/keys = { "times":FloatArray( 0.4 ), "transitions":FloatArray( 1 ), "values":[ { "args":[ 12 ], "method":"DamageCharacter" } ] }
 
+[sub_resource type="GDScript" id=12]
+
+script/source = "extends Control\n\n#func GenerateComboButtons\n\nfunc _on_turnController_turnChanged():\n\tfor child in get_child(0).get_children():\n\t\tchild.queue_free()\n\tset_hidden(true)\n\nfunc _on_inputResolver_correctHit():\n\tget_child(0).get_child(0).queue_free()\n"
+
+[sub_resource type="GDScript" id=13]
+
+script/source = "extends Light2D\n\n\n\nfunc _on_timer_timeout():\n\tif is_enabled():\n\t\tset_enabled(false)\n\telse:\n\t\tset_enabled(true)\n\tget_node(\"timer\").set_wait_time(rand_range(0,0.3))\n"
+
 [node name="main" type="Control"]
 
 focus/ignore_mouse = false
@@ -259,9 +368,12 @@ centered = false
 
 transform/pos = Vector2( 540, 460 )
 transform/scale = Vector2( 10, 10 )
+z/z = 2
 texture = ExtResource( 2 )
-region = true
-region_rect = Rect2( 0, 6.5, 15, 26.5 )
+vframes = 2
+hframes = 6
+frame = 5
+region_rect = Rect2( 100, 4, 13, 29 )
 script/script = ExtResource( 3 )
 currentStance = null
 actionsInterfacePath = NodePath("../UILayer/UI/actionsInterface")
@@ -276,23 +388,28 @@ playback/default_blend_time = 0.0
 root/root = NodePath("..")
 anims/defend = SubResource( 1 )
 anims/exposed = SubResource( 2 )
-anims/getHit = SubResource( 10 )
-anims/kick = SubResource( 3 )
-anims/punch = SubResource( 4 )
-anims/testAnim = SubResource( 5 )
+anims/getHit = SubResource( 3 )
+anims/idle = SubResource( 14 )
+anims/kick = SubResource( 4 )
+anims/punch = SubResource( 5 )
+anims/testAnim = SubResource( 6 )
 playback/active = true
-playback/speed = 1.0
+playback/speed = 1.6
 blend_times = [  ]
-autoplay = ""
+autoplay = "idle"
 
-[node name="comboComponent" parent="playerOne" instance=ExtResource( 5 )]
+[node name="comboComponent" parent="playerOne" instance=ExtResource( 6 )]
 
-[node name="inputResolver" parent="playerOne" instance=ExtResource( 6 )]
+[node name="inputResolver" parent="playerOne" instance=ExtResource( 7 )]
+
+editor/display_folded = true
+comboInterfacePath = NodePath("../../UILayer/comboInterface")
 
 [node name="playerTwo" type="Sprite" parent="."]
 
 transform/pos = Vector2( 770, 460 )
 transform/scale = Vector2( 10, 10 )
+z/z = 2
 texture = ExtResource( 2 )
 flip_h = true
 region = true
@@ -309,25 +426,28 @@ healthBarPath = NodePath("../UILayer/UI/healthBar2")
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/defend = SubResource( 6 )
-anims/exposed = SubResource( 7 )
-anims/getHit = SubResource( 11 )
-anims/kick = SubResource( 8 )
-anims/punch = SubResource( 9 )
-anims/testAnim = SubResource( 5 )
+anims/defend = SubResource( 7 )
+anims/exposed = SubResource( 8 )
+anims/getHit = SubResource( 9 )
+anims/idle = SubResource( 15 )
+anims/kick = SubResource( 10 )
+anims/punch = SubResource( 11 )
+anims/testAnim = SubResource( 6 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
-autoplay = ""
+autoplay = "idle"
 
-[node name="comboComponent" parent="playerTwo" instance=ExtResource( 5 )]
+[node name="comboComponent" parent="playerTwo" instance=ExtResource( 6 )]
 
-[node name="inputResolver" parent="playerTwo" instance=ExtResource( 6 )]
+[node name="inputResolver" parent="playerTwo" instance=ExtResource( 7 )]
+
+comboInterfacePath = NodePath("../../UILayer/comboInterface")
 
 [node name="UILayer" type="CanvasLayer" parent="."]
 
 editor/display_folded = true
-layer = 1
+layer = 5
 offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
@@ -349,7 +469,7 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-theme/theme = ExtResource( 7 )
+theme/theme = ExtResource( 8 )
 margin/left = 30.0
 margin/top = 10.0
 margin/right = 510.0
@@ -369,7 +489,7 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-theme/theme = ExtResource( 7 )
+theme/theme = ExtResource( 8 )
 margin/left = 770.0
 margin/top = 10.0
 margin/right = 1250.0
@@ -383,48 +503,234 @@ range/exp_edit = false
 range/rounded = true
 percent/visible = true
 
-[node name="actionsInterface" parent="UILayer/UI" instance=ExtResource( 8 )]
+[node name="actionsInterface" parent="UILayer/UI" instance=ExtResource( 9 )]
 
-visibility/visible = false
+editor/display_folded = true
 margin/top = 110.0
 margin/bottom = 150.0
+
+[node name="punchButton" parent="UILayer/UI/actionsInterface"]
+
+params/modulate = Color( 1, 0.335419, 0.285156, 1 )
+
+[node name="kickButton" parent="UILayer/UI/actionsInterface"]
+
+params/modulate = Color( 1, 0.335419, 0.285156, 1 )
+
+[node name="defenseButton" parent="UILayer/UI/actionsInterface"]
+
+params/modulate = Color( 1, 0.335419, 0.285156, 1 )
 
 [node name="comboButton" parent="UILayer/UI/actionsInterface"]
 
-visibility/visible = false
+params/modulate = Color( 1, 0.335419, 0.285156, 1 )
 
-[node name="actionsInterface2" parent="UILayer/UI" instance=ExtResource( 8 )]
+[node name="actionsInterface2" parent="UILayer/UI" instance=ExtResource( 9 )]
 
-visibility/visible = false
-margin/left = 1210.0
+editor/display_folded = true
+margin/left = 1194.0
 margin/top = 110.0
-margin/right = 1250.0
+margin/right = 1234.0
 margin/bottom = 150.0
+
+[node name="punchButton" parent="UILayer/UI/actionsInterface2"]
+
+params/modulate = Color( 0.679688, 0.446377, 0.276123, 1 )
+
+[node name="Sprite" parent="UILayer/UI/actionsInterface2/punchButton"]
+
+flip_h = true
+region_rect = Rect2( 60.375, 41, 19.625, 25 )
+
+[node name="kickButton" parent="UILayer/UI/actionsInterface2"]
+
+params/modulate = Color( 0.679688, 0.446377, 0.276123, 1 )
+
+[node name="Sprite2" parent="UILayer/UI/actionsInterface2/kickButton"]
+
+flip_h = true
+region_rect = Rect2( 81, 39, 19, 27 )
+
+[node name="defenseButton" parent="UILayer/UI/actionsInterface2"]
+
+params/modulate = Color( 0.679688, 0.446377, 0.276123, 1 )
+
+[node name="Sprite3" parent="UILayer/UI/actionsInterface2/defenseButton"]
+
+flip_h = true
+region_rect = Rect2( 40, 39, 17, 27 )
 
 [node name="comboButton" parent="UILayer/UI/actionsInterface2"]
 
-visibility/visible = false
+params/modulate = Color( 0.679688, 0.446377, 0.276123, 1 )
 
-[node name="turnController" parent="." instance=ExtResource( 9 )]
+[node name="Sprite4" parent="UILayer/UI/actionsInterface2/comboButton"]
+
+flip_h = true
+
+[node name="comboInterface" type="Control" parent="UILayer"]
+
+visibility/visible = false
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 40.0
+script/script = SubResource( 12 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/comboInterface"]
+
+rect/scale = Vector2( 3, 3 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 452.0
+margin/top = 239.0
+margin/right = 573.0
+margin/bottom = 260.0
+alignment = 0
+
+[node name="ProgressBar" type="ProgressBar" parent="UILayer/comboInterface"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+theme/theme = ExtResource( 10 )
+margin/left = 344.0
+margin/top = 183.0
+margin/right = 931.0
+margin/bottom = 216.0
+range/min = 0.0
+range/max = 100.0
+range/step = 1.0
+range/page = 0.0
+range/value = 100.0
+range/exp_edit = false
+range/rounded = false
+percent/visible = true
+
+[node name="text" type="Label" parent="UILayer/comboInterface"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+theme/theme = ExtResource( 10 )
+margin/left = 546.0
+margin/top = 157.0
+margin/right = 707.0
+margin/bottom = 182.0
+text = "COMBO TIME"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="turnController" parent="." instance=ExtResource( 11 )]
 
 margin/left = 624.0
 margin/top = 65.0
 margin/right = 664.0
 margin/bottom = 105.0
 
-[node name="crowd" type="CanvasLayer" parent="."]
+[node name="crowd" type="Node2D" parent="."]
 
-layer = 1
+editor/display_folded = true
+
+[node name="crowPos" type="Node2D" parent="crowd"]
+
+[node name="Position2D" type="Position2D" parent="crowd/crowPos"]
+
+transform/pos = Vector2( 105.514, 648.155 )
+z/z = 4
+
+[node name="Position2D2" type="Position2D" parent="crowd/crowPos"]
+
+transform/pos = Vector2( 236.652, 524.553 )
+z/z = 2
+
+[node name="Position2D3" type="Position2D" parent="crowd/crowPos"]
+
+transform/pos = Vector2( 373.82, 480.841 )
+z/z = 1
+
+[node name="Position2D4" type="Position2D" parent="crowd/crowPos"]
+
+transform/pos = Vector2( 639.111, 474.811 )
+z/z = 1
+
+[node name="Position2D5" type="Position2D" parent="crowd/crowPos" groups=[ "flip" ]]
+
+transform/pos = Vector2( 942.086, 485.362 )
+z/z = 2
+
+[node name="Position2D6" type="Position2D" parent="crowd/crowPos" groups=[ "flip" ]]
+
+transform/pos = Vector2( 1070.21, 539.627 )
+z/z = 3
+
+[node name="Position2D7" type="Position2D" parent="crowd/crowPos" groups=[ "flip" ]]
+
+transform/pos = Vector2( 1198.33, 664.736 )
+z/z = 4
+
+[node name="crowd" parent="crowd" instance=ExtResource( 12 )]
+
+crowdPosPath = NodePath("../crowPos")
+
+[node name="light" type="Light2D" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 665.961, 83.0177 )
+transform/scale = Vector2( 1.13323, 1.09708 )
+enabled = false
+editor_only = false
+texture = ExtResource( 13 )
 offset = Vector2( 0, 0 )
-rotation = 0.0
-scale = Vector2( 1, 1 )
+scale = 1.0
+color = Color( 0.941406, 0.870445, 0.592056, 1 )
+energy = 0.7
+mode = 0
+range/height = 0.0
+range/z_min = -1024
+range/z_max = 1024
+range/layer_min = 0
+range/layer_max = 0
+range/item_mask = 1
+shadow/enabled = false
+shadow/color = Color( 0, 0, 0, 0 )
+shadow/buffer_size = 2048
+shadow/esm_multiplier = 80.0
+shadow/item_mask = 1
+script/script = SubResource( 13 )
 
-[node name="Sprite" type="Sprite" parent="crowd"]
+[node name="timer" type="Timer" parent="light"]
 
-visibility/visible = false
-transform/scale = Vector2( 10, 10 )
-texture = ExtResource( 10 )
-centered = false
+process_mode = 1
+wait_time = 0.2
+one_shot = false
+autostart = true
+
+[node name="StreamPlayer" type="StreamPlayer" parent="."]
+
+stream/stream = ExtResource( 14 )
+stream/play = false
+stream/loop = true
+stream/volume_db = 0.0
+stream/autoplay = true
+stream/paused = false
+stream/loop_restart_time = 0.0
+stream/buffering_ms = 500
+
+[connection signal="correctHit" from="playerOne/inputResolver" to="UILayer/comboInterface" method="_on_inputResolver_correctHit"]
+
+[connection signal="correctHit" from="playerTwo/inputResolver" to="UILayer/comboInterface" method="_on_inputResolver_correctHit"]
 
 [connection signal="released" from="UILayer/UI/actionsInterface/punchButton" to="playerOne" method="_on_punchButton_released"]
 
@@ -442,6 +748,11 @@ centered = false
 
 [connection signal="released" from="UILayer/UI/actionsInterface2/comboButton" to="playerTwo" method="_on_comboButton_released"]
 
+[connection signal="turnChanged" from="turnController" to="UILayer/comboInterface" method="_on_turnController_turnChanged"]
 
+[connection signal="timeout" from="light/timer" to="light" method="_on_timer_timeout"]
+
+
+[editable path="playerOne/inputResolver"]
 [editable path="UILayer/UI/actionsInterface"]
 [editable path="UILayer/UI/actionsInterface2"]

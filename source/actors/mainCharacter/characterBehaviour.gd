@@ -8,7 +8,7 @@ var health = 100
 var actionQueue = []
 var avaiableActions = 3 setget SetAvaiableActions
 var defense
-var bonusCombo = 0
+var comboBonus = 0
 
 export (NodePath) var actionsInterfacePath
 onready var actionsInterface = get_node(actionsInterfacePath)
@@ -62,4 +62,5 @@ func _on_comboButton_released():
 	if avaiableActions <3:
 		print("you can't make a combo")
 	else:
+		comboBonus = 20
 		get_node("comboComponent").MakeCombo()

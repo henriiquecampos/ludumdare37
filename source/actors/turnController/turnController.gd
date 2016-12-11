@@ -1,5 +1,5 @@
 extends Label
-
+signal turnChanged
 export (String,"playerOne", "playerTwo") var turn setget SetTurn
 var currentPlaying
 var lastPlayed
@@ -27,7 +27,8 @@ func ResolveTurn():
 			lastPlayed.actions.ExecuteKick()
 		elif lastPlayed.actionQueue[0] == "defend":
 			lastPlayed.actions.ExecuteDefense()
-	lastPlayed.bonusCombo = 0
+	lastPlayed.comboBonus = 0
+	emit_signal("turnChanged")
 func SetCurrentPlayer():
 		if turn == "playerOne":
 			currentPlaying = get_node("../playerOne")
@@ -35,6 +36,7 @@ func SetCurrentPlayer():
 		elif turn == "playerTwo":
 			currentPlaying = get_node("../playerTwo")
 			lastPlayed = get_node("../playerOne")
+		currentPlaying.actionQueue.clear()
 		lastPlayed.actionsInterface.set_hidden(true)
 		currentPlaying.actionsInterface.set_hidden(false)
 		lastPlayed.ResetActions()
