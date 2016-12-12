@@ -8,7 +8,7 @@
 
 [sub_resource type="GDScript" id=1]
 
-script/source = "extends Control\n\nonready var actionQue = get_node(\"avaiableActions\")\nfunc _ready():\n\t# Called every time the node is added to the scene.\n\t# Initialization here\n\tpass\n\n\nfunc _on_punchButton_released():\n\tget_node(\"comboButton\").set_hidden(true)\n\tvar action = get_node(\"punchButton\").duplicate()\n\tactionQue.add_child(action)\n\n\nfunc _on_kickButton_released():\n\tvar action = get_node(\"kickButton\").duplicate()\n\tactionQue.add_child(action)\n\nfunc _on_defenseButton_released():\n\tget_node(\"comboButton\").set_hidden(true)\n\tvar action = get_node(\"defenseButton\").duplicate()\n\tactionQue.add_child(action)\n\nfunc _on_actionsInterface_visibility_changed():\n\tfor child in actionQue.get_children():\n\t\tchild.queue_free()\n\tget_node(\"comboButton\").set_hidden(false)\n"
+script/source = "extends Control\n\nonready var actionQue = get_node(\"avaiableActions\")\n\nsignal timerStarted\n\nfunc _on_punchButton_released():\n\tget_node(\"comboButton\").set_hidden(true)\n\tvar action = get_node(\"punchButton\").duplicate()\n\tactionQue.add_child(action)\n\taction.set_hidden(false)\n\nfunc _on_kickButton_released():\n\tget_node(\"comboButton\").set_hidden(true)\n\tvar action = get_node(\"kickButton\").duplicate()\n\tactionQue.add_child(action)\n\taction.set_hidden(false)\n\nfunc _on_defenseButton_released():\n\tget_node(\"comboButton\").set_hidden(true)\n\tvar action = get_node(\"defenseButton\").duplicate()\n\tactionQue.add_child(action)\n\taction.set_hidden(false)\n\t\nfunc _on_actionsInterface_visibility_changed():\n\tfor child in actionQue.get_children():\n\t\tchild.queue_free()\n\tget_node(\"comboButton\").set_hidden(false)\n\tget_node(\"punchButton\").set_hidden(false)\n\tget_node(\"kickButton\").set_hidden(false)\n\tget_node(\"defenseButton\").set_hidden(false)\n\nfunc _on_actionsInterface_timerStarted():\n\tget_node(\"punchButton\").set_hidden(true)\n\tget_node(\"kickButton\").set_hidden(true)\n\tget_node(\"defenseButton\").set_hidden(true)\n\nfunc _on_timer_timeout():\n\tget_node(\"../../../turnController\").ToggleTurn()\n"
 
 [sub_resource type="DynamicFont" id=2]
 
@@ -159,6 +159,15 @@ margin/right = 309.0
 margin/bottom = 304.0
 alignment = 0
 
+[node name="timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = true
+autostart = false
+
+[connection signal="timerStarted" from="." to="." method="_on_actionsInterface_timerStarted"]
+
 [connection signal="visibility_changed" from="." to="." method="_on_actionsInterface_visibility_changed"]
 
 [connection signal="released" from="punchButton" to="." method="_on_punchButton_released"]
@@ -166,5 +175,7 @@ alignment = 0
 [connection signal="released" from="kickButton" to="." method="_on_kickButton_released"]
 
 [connection signal="released" from="defenseButton" to="." method="_on_defenseButton_released"]
+
+[connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]
 
 

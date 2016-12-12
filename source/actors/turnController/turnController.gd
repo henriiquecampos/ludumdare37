@@ -40,3 +40,4 @@ func SetCurrentPlayer():
 		currentPlaying.actionsInterface.set_hidden(false)
 		lastPlayed.ResetActions()
 		currentPlaying.actionsInterface.set_hidden(false)
+		currentPlaying.currentStance = "normal"

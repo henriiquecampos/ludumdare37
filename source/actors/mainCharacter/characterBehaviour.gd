@@ -21,14 +21,14 @@ func ResetActions():
 	avaiableActions = 3
 func SetAvaiableActions(value):
 	if avaiableActions <= 1:
-		get_node("../turnController").ToggleTurn()
+		actionsInterface.emit_signal("timerStarted")
+		actionsInterface.get_node("timer").start()
+		pass
 	elif value != 0:
 		avaiableActions += value
-		#actionsInterface.get_node("avaiableActions").set_text("avaiable actions: " + str(avaiableActions))
-	else:
-		avaiableActions = 0
 		
 func SetCurrentStance(value):
+	print(str(value) + get_name())
 	currentStance = value
 	if value == "normal":
 		defense = 0
@@ -54,14 +54,13 @@ func _on_punchButton_released():
 	SetAvaiableActions(-1)
 	actionQueue.append(actionType[0])
 func _on_kickButton_released():
-	SetAvaiableActions(-1)
 	actionQueue.append(actionType[1])
+	SetAvaiableActions(-1)
 func _on_defenseButton_released():
 	actionQueue.append(actionType[2])
-	get_node("../turnController").ToggleTurn()
+	actionsInterface.emit_signal("timerStarted")
+	actionsInterface.get_node("timer").start()
 func _on_comboButton_released():
-	if avaiableActions <3:
-		print("you can't make a combo")
-	else:
+	if avaiableActions > 2 :
 		comboBonus = 20
 		get_node("comboComponent").MakeCombo()
