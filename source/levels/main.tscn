@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=1]
+[gd_scene load_steps=40 format=1]
 
 [ext_resource path="res://levels/fundo.png" type="Texture" id=1]
 [ext_resource path="res://actors/mainCharacter/Players_spritesheet_20x33px.png" type="Texture" id=2]
@@ -15,11 +15,10 @@
 [ext_resource path="res://actors/turnController/turnController.tscn" type="PackedScene" id=13]
 [ext_resource path="res://areas/crowd/crowd.tscn" type="PackedScene" id=14]
 [ext_resource path="res://lights/light.png" type="Texture" id=15]
-[ext_resource path="res://levels/fight_theme_finalversion.ogg" type="AudioStream" id=16]
-[ext_resource path="res://screens/buttonLarge.png" type="Texture" id=17]
-[ext_resource path="res://screens/buttonLargeClick.png" type="Texture" id=18]
-[ext_resource path="res://screens/buttonLargeHover.png" type="Texture" id=19]
-[ext_resource path="res://fonts/menuFont.tres" type="DynamicFont" id=20]
+[ext_resource path="res://screens/buttonLarge.png" type="Texture" id=16]
+[ext_resource path="res://screens/buttonLargeClick.png" type="Texture" id=17]
+[ext_resource path="res://screens/buttonLargeHover.png" type="Texture" id=18]
+[ext_resource path="res://fonts/menuFont.tres" type="DynamicFont" id=19]
 
 [sub_resource type="Animation" id=1]
 
@@ -548,7 +547,6 @@ z/z = 2
 texture = ExtResource( 2 )
 vframes = 2
 hframes = 6
-frame = 5
 region_rect = Rect2( 100, 4, 13, 29 )
 script/script = ExtResource( 3 )
 currentStance = null
@@ -584,6 +582,7 @@ comboInterfacePath = NodePath("../../UILayer/comboInterface")
 
 [node name="playerTwo" type="Sprite" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 770, 460 )
 transform/scale = Vector2( 10, 10 )
 z/z = 2
@@ -626,6 +625,7 @@ comboInterfacePath = NodePath("../../UILayer/comboInterface")
 
 [node name="UILayer" type="CanvasLayer" parent="."]
 
+editor/display_folded = true
 layer = 7
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -915,18 +915,6 @@ wait_time = 0.2
 one_shot = false
 autostart = true
 
-[node name="StreamPlayer" type="StreamPlayer" parent="."]
-
-process/pause_mode = 2
-stream/stream = ExtResource( 16 )
-stream/play = false
-stream/loop = true
-stream/volume_db = 0.0
-stream/autoplay = true
-stream/paused = false
-stream/loop_restart_time = 0.0
-stream/buffering_ms = 500
-
 [node name="gameOver" type="Control" parent="."]
 
 process/pause_mode = 2
@@ -1007,9 +995,9 @@ toggle_mode = false
 click_on_press = true
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 17 )
-textures/pressed = ExtResource( 18 )
-textures/hover = ExtResource( 19 )
+textures/normal = ExtResource( 16 )
+textures/pressed = ExtResource( 17 )
+textures/hover = ExtResource( 18 )
 params/scale = Vector2( 3, 3 )
 
 [node name="Label" type="Label" parent="gameOver/buttonsLayer/buttons/retry"]
@@ -1022,7 +1010,7 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 191.0
 margin/bottom = 65.0
-custom_fonts/font = ExtResource( 20 )
+custom_fonts/font = ExtResource( 19 )
 text = "Retry"
 align = 1
 valign = 1
@@ -1044,9 +1032,9 @@ toggle_mode = false
 click_on_press = true
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 17 )
-textures/pressed = ExtResource( 18 )
-textures/hover = ExtResource( 19 )
+textures/normal = ExtResource( 16 )
+textures/pressed = ExtResource( 17 )
+textures/hover = ExtResource( 18 )
 params/scale = Vector2( 3, 3 )
 
 [node name="Label" type="Label" parent="gameOver/buttonsLayer/buttons/quit"]
@@ -1059,7 +1047,7 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 189.0
 margin/bottom = 62.0
-custom_fonts/font = ExtResource( 20 )
+custom_fonts/font = ExtResource( 19 )
 text = "Quit"
 align = 1
 valign = 1

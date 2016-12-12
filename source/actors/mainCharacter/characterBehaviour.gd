@@ -28,7 +28,6 @@ func SetAvaiableActions(value):
 		avaiableActions += value
 		
 func SetCurrentStance(value):
-	print(str(value) + get_name())
 	currentStance = value
 	if value == "normal":
 		defense = 0

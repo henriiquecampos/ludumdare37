@@ -26,6 +26,8 @@ func ResolveTurn():
 			lastPlayed.actions.ExecuteKick()
 		elif lastPlayed.actionQueue[0] == "defend":
 			lastPlayed.actions.ExecuteDefense()
+	else:
+		lastPlayed.get_node("animator").play("idle")
 	lastPlayed.comboBonus = 0
 	emit_signal("turnChanged")
 func SetCurrentPlayer():
