@@ -541,6 +541,7 @@ centered = false
 
 [node name="playerOne" type="Sprite" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 540, 460 )
 transform/scale = Vector2( 10, 10 )
 z/z = 2
@@ -963,7 +964,6 @@ autoplay = ""
 
 [node name="buttonsLayer" type="CanvasLayer" parent="gameOver"]
 
-editor/display_folded = true
 layer = 6
 offset = Vector2( 0, 0 )
 rotation = 0.0

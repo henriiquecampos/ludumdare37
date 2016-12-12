@@ -8,7 +8,7 @@
 
 [sub_resource type="GDScript" id=1]
 
-script/source = "extends Control\n\nfunc _ready():\n\tpass\n\nfunc _on_quit_released():\n\tget_tree().quit()\n\n\nfunc _on_credits_released():\n\tpass # replace with function body\n\n\nfunc _on_start_released():\n\tget_tree().change_scene(\"res://levels/main.tscn\")\n"
+script/source = "extends Control\n\nfunc _ready():\n\tpass\n\nfunc _on_quit_released():\n\tget_tree().quit()\n\n\nfunc _on_credits_released():\n\tget_tree().change_scene(\"res://screens/credits/credits.tscn\")\n\n\nfunc _on_start_released():\n\tget_tree().change_scene(\"res://levels/main.tscn\")\n"
 
 [node name="mainMenu" type="Control"]
 

@@ -1,0 +1,116 @@
+[gd_scene load_steps=8 format=1]
+
+[ext_resource path="res://screens/buttonLarge.png" type="Texture" id=1]
+[ext_resource path="res://screens/buttonLargeClick.png" type="Texture" id=2]
+[ext_resource path="res://screens/buttonLargeHover.png" type="Texture" id=3]
+[ext_resource path="res://fonts/menuFont.tres" type="DynamicFont" id=4]
+[ext_resource path="res://fonts/credits.tres" type="DynamicFont" id=5]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends Control\n\n\n\nfunc _on_credits_released():\n\tget_tree().change_scene(\"res://screens/mainMenu/mainMenu.tscn\")\n"
+
+[sub_resource type="Animation" id=2]
+
+resource/name = "credits"
+length = 5.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Label2:percent_visible")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 0.0, 1.0 ] }
+
+[node name="credits" type="Control"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 241.0
+margin/top = 0.0
+margin/right = 962.0
+margin/bottom = 471.0
+script/script = SubResource( 1 )
+
+[node name="ColorFrame" type="ColorFrame" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -311.0
+margin/top = -80.0
+margin/right = 1179.0
+margin/bottom = 820.0
+color = Color( 0.0796509, 0.111079, 0.234375, 1 )
+
+[node name="credits" type="TextureButton" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 266.0
+margin/top = 551.0
+margin/right = 455.0
+margin/bottom = 614.0
+toggle_mode = false
+click_on_press = true
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 1 )
+textures/pressed = ExtResource( 2 )
+textures/hover = ExtResource( 3 )
+params/scale = Vector2( 3, 3 )
+
+[node name="Label" type="Label" parent="credits"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 183.0
+margin/bottom = 59.0
+custom_fonts/font = ExtResource( 4 )
+text = "Back"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="animator" type="AnimationPlayer" parent="."]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/credits = SubResource( 2 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = "credits"
+
+[node name="Label2" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -241.0
+margin/top = 20.0
+margin/right = 1039.0
+margin/bottom = 580.0
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 0.636719, 0.401097, 0.286026, 1 )
+text = "Game design: Henrique Campos and Suami Abdalla\n\nVisual Art: Suami Abdalla\n\nMusic: Arlam Junior\n\nand also all members of Jungle Coworking <3"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[connection signal="released" from="credits" to="." method="_on_credits_released"]
+
+

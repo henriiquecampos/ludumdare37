@@ -30,7 +30,6 @@ func ExecuteKick():
 	result = 0
 func ExecuteDefense():
 	GenerateActionResult()
-	print(result)
 	if result < 60:
 		turnController.lastPlayed.SetCurrentStance("defense")
 		get_parent().get_node("animator").play("defend")
