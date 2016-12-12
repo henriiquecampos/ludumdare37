@@ -29,8 +29,15 @@ func ExecuteKick():
 		get_parent().get_node("animator").play("exposed")
 	result = 0
 func ExecuteDefense():
-	turnController.lastPlayed.SetCurrentStance("defense")
-	get_parent().get_node("animator").play("defend")
-	get_parent().actionQueue.clear()
+	GenerateActionResult()
+	print(result)
+	if result < 60:
+		turnController.lastPlayed.SetCurrentStance("defense")
+		get_parent().get_node("animator").play("defend")
+		get_parent().actionQueue.clear()
+	else:
+		get_parent().actionQueue.clear()
+		turnController.lastPlayed.SetCurrentStance("exposed")
+		get_parent().get_node("animator").play("exposed")
 func ExecuteCombo():
 	pass
