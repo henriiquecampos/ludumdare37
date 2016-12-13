@@ -34,7 +34,7 @@ func SetCurrentStance(value):
 	elif value == "defense":
 		defense = -20
 	elif value == "exposed":
-		defense = 20
+		defense = 35
 	
 func GetCurrentStance():
 	return

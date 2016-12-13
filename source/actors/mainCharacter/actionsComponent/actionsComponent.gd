@@ -9,7 +9,7 @@ func GenerateActionResult():
 	result = thereshold - turnController.currentPlaying.defense - turnController.lastPlayed.comboBonus
 func ExecutePunch():
 	GenerateActionResult()
-	if  result < 75:
+	if  result < 65:
 		get_parent().get_node("animator").play("punch")
 		get_parent().actionQueue.pop_front()
 	else:
@@ -30,7 +30,7 @@ func ExecuteKick():
 	result = 0
 func ExecuteDefense():
 	GenerateActionResult()
-	if result < 60:
+	if result < 70:
 		turnController.lastPlayed.SetCurrentStance("defense")
 		get_parent().get_node("animator").play("defend")
 		get_parent().actionQueue.clear()
