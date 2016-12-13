@@ -1,0 +1,214 @@
+[gd_scene load_steps=8 format=1]
+
+[ext_resource path="res://screens/instructions/instructions.png" type="Texture" id=1]
+[ext_resource path="res://fonts/instructions.tres" type="DynamicFont" id=2]
+[ext_resource path="res://screens/buttonLarge.png" type="Texture" id=3]
+[ext_resource path="res://screens/buttonLargeClick.png" type="Texture" id=4]
+[ext_resource path="res://screens/buttonLargeHover.png" type="Texture" id=5]
+[ext_resource path="res://fonts/menuFont.tres" type="DynamicFont" id=6]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends Control\n\n\n\nfunc _on_TextureButton_released():\n\tget_tree().change_scene(\"res://levels/main.tscn\")\n"
+
+[node name="instructions" type="Control"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 40.0
+script/script = SubResource( 1 )
+
+[node name="TextureFrame" type="TextureFrame" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 1290.0
+margin/bottom = 720.0
+texture = ExtResource( 1 )
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="TextureFrame"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 70.0
+margin/top = 180.0
+margin/right = 411.0
+margin/bottom = 202.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.277344, 0.11284, 0.0325012, 1 )
+text = "You have three actions per turn"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Label2" type="Label" parent="TextureFrame"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 80.0
+margin/top = 220.0
+margin/right = 441.0
+margin/bottom = 292.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.277344, 0.11284, 0.0325012, 1 )
+text = "each time you land a hit you have \nless chances to sucess in the next\n  action"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Label3" type="Label" parent="TextureFrame"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 110.0
+margin/top = 300.0
+margin/right = 411.0
+margin/bottom = 347.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.277344, 0.11284, 0.0325012, 1 )
+text = "defense ends your turn and \ncounts as a normal action"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Label4" type="Label" parent="TextureFrame"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 140.0
+margin/top = 360.0
+margin/right = 453.0
+margin/bottom = 407.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.277344, 0.11284, 0.0325012, 1 )
+text = "the defense stance descrese \nthe enemy\'s chance to hit"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Label5" type="Label" parent="TextureFrame"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 150.0
+margin/top = 430.0
+margin/right = 447.0
+margin/bottom = 452.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.277344, 0.11284, 0.0325012, 1 )
+text = "if you miss you\'ll be exposed"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Label6" type="Label" parent="TextureFrame"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 160.0
+margin/top = 470.0
+margin/right = 438.0
+margin/bottom = 517.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.277344, 0.11284, 0.0325012, 1 )
+text = "increasing the chances of\n being hit"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Label7" type="Label" parent="TextureFrame"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 170.0
+margin/top = 530.0
+margin/right = 529.0
+margin/bottom = 577.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.277344, 0.11284, 0.0325012, 1 )
+text = "you can also try a combo \nwith increased number of actions"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Label8" type="Label" parent="TextureFrame"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 170.0
+margin/top = 590.0
+margin/right = 421.0
+margin/bottom = 637.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.277344, 0.11284, 0.0325012, 1 )
+text = "but you will need to test \nyour might  first"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="TextureButton" type="TextureButton" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 640.0
+margin/top = 590.0
+margin/right = 829.0
+margin/bottom = 653.0
+toggle_mode = false
+click_on_press = true
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 3 )
+textures/pressed = ExtResource( 4 )
+textures/hover = ExtResource( 5 )
+params/scale = Vector2( 3, 3 )
+
+[node name="Label" type="Label" parent="TextureButton"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 190.0
+margin/bottom = 68.0
+custom_fonts/font = ExtResource( 6 )
+text = "FIGHT"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[connection signal="released" from="TextureButton" to="." method="_on_TextureButton_released"]
+
+
